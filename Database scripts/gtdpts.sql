@@ -1,3 +1,8 @@
+/*************************************************************************
+********BASE DE DATOS MUNICIPIOS Y DEPARTAMENTOS DE GUATEMALA*************
+**************************************************************************/
+
+
 CREATE TABLE Departamentos(
                               id_departamento		INT NOT NULL,
                               departamento		     VARCHAR(50),
