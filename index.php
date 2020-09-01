@@ -1,12 +1,12 @@
 <?php
 require_once 'autoload.php';
+require_once 'config/parameters.php';
 require_once 'views/layout/header.php';
-// require_once 'views/layout/section.php';
 
 if(isset($_GET['controller'])){
      $nombre_controllador = $_GET['controller'].'Controller';
 }else{
-     echo("La pagina no existe");
+     show_error();
      exit();
 }
 
@@ -17,12 +17,17 @@ if(class_exists($nombre_controllador)){
           $action = $_GET['action'];
           $controllador->$action();
      }else{
-          echo "La pagina que buscas no existe";
+          show_error();
      }
 }else{
-     echo "La pagina que buscas no existe";
+     show_error();
+
 }
 
+function show_error(){
+     $error = new errorController();
+     $error->index();
+}
 require_once 'views/layout/newsletter.php';
 require_once 'views/layout/footer.php';
 
