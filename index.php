@@ -18,6 +18,7 @@ if(class_exists($nombre_controllador)){
           $controllador->$action();
      }else{
           show_error();
+          
      }
 }else{
      show_error();
