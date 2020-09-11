@@ -5,16 +5,16 @@ CREATE TABLE Departamentos(
     					);
 
 CREATE TABLE Municipios (
-                              id_municipio		     INT NOT NULL,
-                              municipio			     VARCHAR(50) NOT NULL,
-                              codigo_postal		     int,
-                              id_departamento		int NOT NULL,
+                              id_municipio		     INT            NOT NULL,
+                              municipio			     VARCHAR(50)    NOT NULL,
+                              cod		               VARCHAR(5)     NOT NULL,
+                              id_departamento		int            NOT NULL,
                               CONSTRAINT Pk_id_municipio    PRIMARY KEY(id_municipio),
                               CONSTRAINT FK_id_departamento FOREIGN KEY(id_departamento) REFERENCES Departamentos(id_departamento)
     					)ENGINE=INNODB;
 
 CREATE TABLE  Cliente (
-                              id_cliente               INT            NOT NULL,
+                              id_cliente               INT            NOT NULL AUTO_INCREMENT,
                               nombres                  VARCHAR(100)   NOT NULL,
                               apellidos                VARCHAR (100)  NOT NULL,
                               fecha_nacimiento         DATE           NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE  Cliente (
                          )ENGINE=INNODB;
 
 CREATE TABLE DireccionesEnvio(
-                              id_direccion             INT            NOT NULL,
+                              id_direccion             INT            NOT NULL AUTO_INCREMENT,
                               direccion                VARCHAR(500)   NOT NULL,
                               int_estado               TINYINT        NOT NULL,
                               id_municipio             INT            NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE DireccionesEnvio(
 
 
 CREATE TABLE Tienda (
-                              id_tienda                INT            NOT NULL,
+                              id_tienda                INT            NOT NULL AUTO_INCREMENT,
                               nombres                  INT            NOT NULL,
                               eslogan                  VARCHAR(100)   NOT NULL,
                               mision                   VARCHAR(100)   NOT NULL,
@@ -54,16 +54,16 @@ CREATE TABLE Tienda (
                     )ENGINE=INNODB;
  
 
- CREATE TABLE COordenada (
-                              id_coordenada             INT           NOT NULL,
+ CREATE TABLE Coordenada (
+                              id_coordenada             INT           NOT NULL AUTO_INCREMENT,
                               altitud                   VARCHAR(15)   NOT NULL,
                               latitud                   VARCHAR(15)   NOT NULL,
                               CONSTRAINT PK_id_coordenada PRIMARY KEY (id_coordenada)
- )
+ )ENGINE=INNODB;
 
 
  CREATE TABLE Sucursales (
-                              id_sucursal              INT            NOT NULL,
+                              id_sucursal              INT            NOT NULL AUTO_INCREMENT,
                               sucursal                 VARCHAR(100)   NOT NULL,
                               direccion                VARCHAR(100)   NOT NULL,
                               telefono                 VARCHAR(20)    NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE Tienda (
                     )ENGINE=INNODB;
 
 CREATE TABLE Estantes(
-                              id_estante               INT            NOT NULL,
+                              id_estante               INT            NOT NULL AUTO_INCREMENT,
                               estante                  VARCHAR(10)    NOT NULL,
                               int_estado               TINYINT        NOT NULL,
                               id_sucursal              INT            NOT NULL,
@@ -87,7 +87,7 @@ CREATE TABLE Estantes(
                     )ENGINE=INNODB;
 
 CREATE TABLE Categorias(
-                              id_categoria             INT            NOT NULL,
+                              id_categoria             INT            NOT NULL AUTO_INCREMENT,
                               categoria                varchar(100)   NOT NULL,
                               descripcion              VARCHAR(500)   NOT NULL,
                               int_estado               TINYINT        NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE Categorias(
                          )ENGINE=INNODB;
 
 CREATE TABLE SubCategorias(
-                              id_subcategoria          INT            NOT NULL,
+                              id_subcategoria          INT            NOT NULL AUTO_INCREMENT,
                               categoria                VARCHAR(100)   NOT NULL,
                               descripcion              VARCHAR(500)   NOT NULL,
                               int_estado               TINYINT        NOT NULL,
@@ -106,14 +106,14 @@ CREATE TABLE SubCategorias(
                          )ENGINE=INNODB;
 
  CREATE TABLE Marca(
-                              id_marca                 INT            NOT NULL,
+                              id_marca                 INT            NOT NULL AUTO_INCREMENT,
                               marca                    VARCHAR(100)   NOT NULL,
                               int_estado               INT            NOT NULL,
                               CONSTRAINT PK_id_marca PRIMARY KEY(id_marca)
                     )ENGINE=INNODB;           
 
  CREATE TABLE Productos(
-                              id_producto              INT            NOT NULL,
+                              id_producto              INT            NOT NULL AUTO_INCREMENT,
                               nombre                   VARCHAR(100)   NOT NULL,
                               descripcion              VARCHAR(1000)  NOT NULL,
                               stock_total              INT            NOT NULL,
@@ -123,14 +123,14 @@ CREATE TABLE SubCategorias(
                               specificacionesJSON      JSON,
                               int_estado               TINYINT        NOT NULL,
                               id_subcategoria          INT            NOT NULL,
-                              id_marca                 INT 
+                              id_marca                 INT,
                               CONSTRAINT PK_id_producto PRIMARY KEY (id_producto),
                               CONSTRAINT FK_id_subcategoria FOREIGN KEY (id_subcategoria) REFERENCES SubCategorias(id_subcategoria),                   
                               CONSTRAINT FK_id_marca FOREIGN KEY (id_marca) REFERENCES Marca(id_marca)                   
                          )ENGINE=INNODB;
 
 CREATE TABLE Carrito(
-                              id_carrito               INT            NOT NULL,
+                              id_carrito               INT            NOT NULL AUTO_INCREMENT,
                               id_cliente               INT            NOT NULL,
                               CONSTRAINT PK_id_carrito PRIMARY KEY (id_carrito),
                               FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
@@ -138,7 +138,7 @@ CREATE TABLE Carrito(
 
 
 CREATE TABLE ProductosCarrito (
-                              id_carrito               INT            NOT NULL,
+                              id_carrito               INT            NOT NULL AUTO_INCREMENT,
                               id_producto              INT            NOT NULL,
                               cantidad                 INT            NOT NULL,
                               CONSTRAINT FK_id_producto FOREIGN KEY (id_producto) REFERENCES Productos(id_producto),
@@ -147,7 +147,7 @@ CREATE TABLE ProductosCarrito (
                               )ENGINE=INNODB;
 
 CREATE TABLE ComentariosProducto   (
-                                        id_comentario  INT            NOT NULL,
+                                        id_comentario  INT            NOT NULL AUTO_INCREMENT,
                                         titulo         varchar(50)    NOT NULL,   
                                         comentario     VARCHAR(250)   NOT NULL,
                                         fecha          DATETIME       NOT NULL,
@@ -160,13 +160,13 @@ CREATE TABLE ComentariosProducto   (
                                    )ENGINE=INNODB;
 
 CREATE TABLE TipoUsuario(
-                              id_tipo_usuario          INT            NOT NULL,
+                              id_tipo_usuario          INT            NOT NULL AUTO_INCREMENT,
                               tipo                     varchar(30)    NOT NULL,
                               CONSTRAINT PK_id_tipo_usuario PRIMARY KEY (id_tipo_usuario)
                          )ENGINE=INNODB;
 
 CREATE TABLE Usuarios    (
-                              id_usuario               INT            NOT NULL,
+                              id_usuario               INT            NOT NULL AUTO_INCREMENT,
                               nombres                  varchar(100)   NOT NULL,
                               apellidos                varchar(100)   NOT NULL,
                               dpi                      BIGINT         NOT NULL,
@@ -180,7 +180,7 @@ CREATE TABLE Usuarios    (
                          )ENGINE=INNODB;
 
 CREATE TABLE Facturas    (
-                              id_factura               INT            NOT NULL,
+                              id_factura               INT            NOT NULL AUTO_INCREMENT,
                               fecha                    DATETIME       NOT NULL,
                               total                    DECIMAL(7,2)   NOT NULL,
                               total_letras             VARCHAR(256)   NOT NULL,
