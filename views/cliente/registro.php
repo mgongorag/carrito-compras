@@ -25,7 +25,7 @@
 					<div class="section-title">
 						<h3 class="title">Formulario de Registro</h3>
 					</div>
-					<form class="" action="index.php?controller=cliente&action=save" method="POST">
+					<form class="" action="<?=base_url?>cliente/save" method="POST">
 						<div class="form-group">
 							<label for="nombres">Nombre</label>
 							<input class="input" type="text" name="names" placeholder="Ingrese sus nombres">
@@ -39,24 +39,24 @@
 							<input class="input" type="email" name="email" placeholder="Ingrese su email">
 						</div>
 						<div class="form-group">
-						<label for="email">Fecha Nacimiento</label>
+							<label for="birthday">Birthday</label>
 							<input class="input" type="date" name="birthday">
 						</div>
 						<div class="form-group">
 							<label for="password">Contraseña</label>
 							<input class="input" type="password" name="password" placeholder="Password">
 						</div>
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label for="password">Confirme su Contraseña</label>
 							<input class="input" type="password" name="password2" placeholder="Password">
-						</div>
+						</div> -->
 						<div class="form-group">
 							<label for="tel">Ingrese su teléfono</label>
 							<input class="input" type="tel" name="tel"placeholder="Ingrese su telefono">
 						</div>
 						<div class="form-group">
 							<label for="tel">Ingrese su teléfono alterno</label>
-							<input class="input" type="tel" name="tel" placeholder="Telephone">
+							<input class="input" type="tel" name="tel2" placeholder="Telephone">
 						</div>
 						<div class="form-group">
 							<input type="submit" class="btn btn-primary" value="Registrarme">

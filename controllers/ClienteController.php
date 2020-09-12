@@ -1,4 +1,5 @@
 <?php
+require_once 'models/cliente.php';
 class clienteController{
 
      public function index(){
@@ -11,8 +12,25 @@ class clienteController{
 
      public function save(){
           if(isset($_POST)){
-               var_dump($_POST);
+               $cliente = new Cliente();
+               $cliente->setnombres($_POST['names']);
+               $cliente->setApellidos($_POST['lastnames']);
+               $cliente->setEmail($_POST['email']);
+               $cliente->setBirthday($_POST['birthday']);
+               $cliente->setPassword($_POST['password']);
+               // $cliente->setPassword($_POST['password']);
+               $cliente->setTelefono($_POST['tel']);
+               $cliente->setTelefonoAlterno($_POST['tel2']);
+               // print_r($cliente);
+
+               var_dump($cliente->save());
+               
+               
+               
           }
+
      }
+
+   
      
 }
